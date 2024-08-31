@@ -1,12 +1,18 @@
 services:
-  file_host:
+  host:
     image: nginx:latest
     ports:
-        - "3000:80"
+      - "3000:80"
     restart: always
     volumes:
-      - ./src:/src
+      - src_file:/src
       - ./nginx.conf:/etc/nginx/nginx.conf
-  cron_pull:
-    build: ./sync.Dockerfile
-    command: cron -f
+  pull:
+    image: bitnami/git:latest
+    entrypoint: /bootstrap.sh
+    volumes:
+      - src_file:/src
+      - ./bootstrap.sh:/bootstrap.sh
+    env_file: "updater.env"
+volumes:
+  src_file:

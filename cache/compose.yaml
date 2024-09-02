@@ -1,0 +1,11 @@
+services:
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/cache/cache.conf
+      - redis_backup:/data
+volumes:
+  redis_backup:

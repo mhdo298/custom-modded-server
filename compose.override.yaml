@@ -1,0 +1,15 @@
+networks:
+  redis_network:
+    driver: bridge
+
+services:
+  assets:
+    env_file:
+      - ".env"
+    volumes:
+      - src_file:/src
+  redis:
+    ports: !reset [ ]
+  pull:
+    env_file:
+      - ".env"

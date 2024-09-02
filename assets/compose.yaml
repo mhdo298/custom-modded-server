@@ -1,0 +1,15 @@
+services:
+  assets:
+    build: .
+    ports:
+      - "4000:8000"
+    volumes:
+      - ./src/main.py:/app/main.py
+      - asset_files:/temp
+    env_file:
+      - "assets.env"
+      - "python.env"
+    command: [ "gunicorn", "--worker-tmp-dir", "/dev/shm", "--workers", "2", "--threads", "4", "--timeout", "30", "-b", "0.0.0.0:8000", "--chdir", "/app", "main:app" ]
+    restart: always
+volumes:
+  asset_files:

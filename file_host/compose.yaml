@@ -1,5 +1,5 @@
 services:
-  host:
+  filehost:
     image: nginx:latest
     ports:
       - "3000:80"
@@ -9,10 +9,12 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
   pull:
     image: bitnami/git:latest
-    entrypoint: /bootstrap.sh
+    entrypoint: '/bootstrap.sh'
+    init: true
+    restart: always
     volumes:
       - src_file:/src
       - ./bootstrap.sh:/bootstrap.sh
-    env_file: "updater.env"
+    env_file: "repo.env"
 volumes:
   src_file:

@@ -1,0 +1,4 @@
+include:
+  - assets/compose.yaml
+  - cache/compose.yaml
+  - file_host/compose.yaml

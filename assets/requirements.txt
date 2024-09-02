@@ -1,0 +1,4 @@
+Flask
+Gunicorn
+redis[hiredis]
+requests
